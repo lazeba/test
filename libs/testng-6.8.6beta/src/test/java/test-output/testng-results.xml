@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Test Ant Suite" duration-ms="20" started-at="2013-05-12T15:05:07Z" finished-at="2013-05-12T15:05:07Z">
+    <groups>
+      <group name="nopackage">
+        <method signature="DontOverrideSuiteNameTest.test()[pri:0, instance:test.ant.DontOverrideSuiteNameTest@76f8968f]" name="test" class="test.ant.DontOverrideSuiteNameTest"/>
+      </group> <!-- nopackage -->
+    </groups>
+    <test name="Test Ant Test" duration-ms="20" started-at="2013-05-12T15:05:07Z" finished-at="2013-05-12T15:05:07Z">
+      <class name="test.ant.DontOverrideSuiteNameTest">
+        <test-method status="PASS" signature="test()[pri:0, instance:test.ant.DontOverrideSuiteNameTest@76f8968f]" name="test" duration-ms="7" started-at="2013-05-12T08:05:07Z" finished-at="2013-05-12T08:05:07Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- test -->
+      </class> <!-- test.ant.DontOverrideSuiteNameTest -->
+    </test> <!-- Test Ant Test -->
+  </suite> <!-- Test Ant Suite -->
+</testng-results>

@@ -1,0 +1,23 @@
+<component name="libraryTable">
+  <library name="libs">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/libs" />
+      <root url="file://$PROJECT_DIR$/libs/selenium-2.44.0" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="file://$PROJECT_DIR$/libs/testng-6.8.6beta/javadocs" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/libs/testng-6.8.6beta/examples/src" />
+      <root url="file://$PROJECT_DIR$/libs/testng-6.8.6beta/spring/src/common" />
+      <root url="file://$PROJECT_DIR$/libs/testng-6.8.6beta/spring/src/jdk14" />
+      <root url="file://$PROJECT_DIR$/libs/testng-6.8.6beta/spring/src/jdk15" />
+      <root url="file://$PROJECT_DIR$/libs/testng-6.8.6beta/src/main/java" />
+      <root url="file://$PROJECT_DIR$/libs/testng-6.8.6beta/src/test/java" />
+      <root url="file://$PROJECT_DIR$/libs/selenium-2.44.0" />
+    </SOURCES>
+    <jarDirectory url="file://$PROJECT_DIR$/libs" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/libs/selenium-2.44.0" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/libs/selenium-2.44.0" recursive="false" type="SOURCES" />
+  </library>
+</component>
