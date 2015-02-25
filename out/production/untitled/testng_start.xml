@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Search panel Suite" verbose="2" time-out="10000">
+
+<test name="Search panel Airport ">
+
+    <classes>
+               <class name="test.SearchPanel"/>
+    </classes>
+</test>
+
+</suite>

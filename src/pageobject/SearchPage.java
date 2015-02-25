@@ -12,27 +12,6 @@ public class SearchPage {
         this.driver = driver;
     }
 
-    public void setNewDestinationCountry(String country) throws Exception {
-        WebElement countryNew = driver.findElement(By.id("autoSuggestText"));
-        countryNew.clear();
-        countryNew.sendKeys(country);
-    }
-
-    public void clickOnPackageTab() throws InterruptedException {
-        WebElement packageTab = driver.findElement(By.id("packageTab"));
-        packageTab.click();
-    }
-
-    public void clickOnDestination() throws InterruptedException {
-        WebElement destination = driver.findElement(By.id("autoSuggestText"));
-        destination.click();
-    }
-
-    public void setDestinationCountry() {
-        WebElement country = driver.findElement(By.cssSelector("div#tone div label[data-id=\"616\"]"));
-        country.click();
-    }
-
     public void clickOnAirport() throws InterruptedException {
         WebElement airport = driver.findElement(By.id("selectedAirports"));
         airport.click();

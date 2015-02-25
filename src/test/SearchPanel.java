@@ -1,13 +1,12 @@
+package test;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import pageobject.SearchPage;
 
 import java.net.MalformedURLException;
@@ -17,25 +16,17 @@ import java.util.concurrent.TimeUnit;
  * Created by Eugene on 2/21/2015.
  */
 public class SearchPanel{
-    public String defaultqQuestionOnPackageTab ="Reiseziel Abflughäfen Reisezeitraum / Dauer Reisen mit Erweiterte Suche";
-    public String defaultQuestionCountry = "Wohin möchten Sie verreisen?";
     public String defaultQuestionAirport = "Von welchem Flughafen möchten Sie abfliegen?";
-    public String defaultQuestionPeriod = "Wann möchten Sie verreisen?";
-    public String textInAirportFieldByDefault = "Alle";
-    public String listOfCountries = " Afrika Griechisches Festland Mauritius Egypten Ibiza Mexiko Arabische Halbinsel Italien Portugal & Madeira Asien Kanaren Rhodos Balearen Karibik Spanisches Festland Bulgarien & Osteuropa Kreta Teneriffa Deutschland Kuba Thailand Dom. Republik Lanzarote Tunesien & Marokko Dubai Malediven Turkei Fuerteventura Mallorca USA Gran Canaria Malta Zypern Griechische Inseln";
-    public String deafaultTextInDestination = "Land, Region, Ort, Hotel eingeben";
-    public String deafaultTextInAiroport = "Von wo?";
+    public String germanyFlightDestination = "Nord Sud Ost West";
     public String airportDestinationCountry = "Deutschland Osterreich Schweiz Sonstige";
 
-    public String country = "Kreta";
-    public String countryNew = "USA";
+    public String defaultTextInAiroportFieldAfterAction = "Alle";
+    public String defaultTextInAiroportFieldBeforeAction = "Von wo?";
 
     public String germanyFlightCitiesByDefault = "Altenburg-Nobitz Berlin-Schonefeld Berlin-Tegel Bremen Dortmund Dresden Dusseldorf Erfurt Frankfurt Frankfurt-Hahn Friedrichshafen Hamburg Hannover Karlsruhe Koln-Bonn Leipzig/Halle Lubeck Memmingen Munchen Munster-Osnabruck Niederrhein (Weeze) Nurnberg Paderborn Rostock Saarbrucken Schwerin Stuttgart Zweibrucken";
     public String austriaFlightCitiesByDefault = "Graz (A) Innsbruck (A) Klagenfurt (A) Linz (A) Salzburg (A) Wien (A)";
     public String switzerlandFlightCitiesByDefault = "Basel-Mulhouse (CH) Genf (CH) Zürich (CH)";
     public String otherFlightCitiesByDefault = "Amsterdam (NL) Brussel (B) Eindhoven (NL) Enschede (NL) Groningen (NL) Luxemburg Luttich (B) Maastricht-Aachen (NL) Strasbourg (F) Warschau (PL)";
-
-    public String germanyFlightDestination = "Nord Sud Ost West";
 
     public ChromeDriver driver;
 
@@ -53,9 +44,7 @@ public class SearchPanel{
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.manage().window().maximize();
 
-
         driver.navigate().to(STAGE);
-
      }
 
     @AfterTest
@@ -72,27 +61,11 @@ public class SearchPanel{
         };
     }
 
-
     @Test(dataProvider = "citiesInAirportField")
     public void testSearch(String germanyDestinationNorth, String germanyDestinationSouth, String germanyDestinationEast, String germanyDestinationWest,
                            String austriaAllCities, String switzerlandAllCities, String allOtherCities) throws Exception {
 
             SearchPage sp = new SearchPage(driver);
-
-// Destination
-            sp.clickOnPackageTab();
-            validateDefaultTextOnPackageTab();
-
-            validateDefaultTextInDestination();
-            sp.clickOnDestination();
-            validateDestinationText();
-            validateDestinationCountries();
-
-            sp.setDestinationCountry();
-            validateDestinationCountry(country);
-
-            sp.setNewDestinationCountry(countryNew);
-            validateDestinationCountry(countryNew);
 
 // Airport
             validateDefaultTextInAirport();
@@ -181,7 +154,7 @@ public class SearchPanel{
 
     public void defaultTextInAirportField() {
         String defaultTextInAirportField  = driver.findElement(By.id("selectedAirports")).getAttribute("value");
-        Assert.assertEquals(defaultTextInAirportField, textInAirportFieldByDefault);
+        Assert.assertEquals(defaultTextInAirportField, defaultTextInAiroportFieldAfterAction);
     }
 
     private void checkboxAllAirportIsActive() {
@@ -199,31 +172,7 @@ public class SearchPanel{
     }
     private void validateDefaultTextInAirport() {
         String textInAirport = driver.findElement(By.id("selectedAirports")).getAttribute("value");
-        Assert.assertEquals(textInAirport, deafaultTextInAiroport);
+        Assert.assertEquals(textInAirport, defaultTextInAiroportFieldBeforeAction);
     }
 
-    private void validateDefaultTextInDestination() {
-        String textInDestination = driver.findElement(By.id("autoSuggestText")).getAttribute("value");
-        Assert.assertEquals(textInDestination, deafaultTextInDestination);
-    }
-
-    private void validateDestinationCountries() {
-        String countriesName = driver.findElementById("tone").getText();
-        Assert.assertEquals(countriesName.replace("\n", "").replace("Ä", "E").replace("ü", "u"), listOfCountries);
-    }
-
-    public void  validateDefaultTextOnPackageTab() {
-        String textOnPackageTab = driver.findElementByClassName("sw-inner").getText();
-        Assert.assertEquals(textOnPackageTab.replace("\n", " "), defaultqQuestionOnPackageTab);
-    }
-
-    public void validateDestinationText() {
-        String travelText = driver.findElement(By.xpath(".//*[@id='searchDropdown']//span[text()=\"Wohin möchten Sie verreisen?\"]")).getText();
-        Assert.assertEquals(travelText, defaultQuestionCountry);
-    }
-
-    public void validateDestinationCountry(String country) throws Exception {
-        String selectedCountry = driver.findElement(By.id("autoSuggestText")).getAttribute("value");
-        Assert.assertEquals(selectedCountry, country);
-    }
 }
