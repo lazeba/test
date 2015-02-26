@@ -6,7 +6,7 @@
 <test name="Search panel Airport ">
 
     <classes>
-               <class name="test.SearchPanel"/>
+               <class name="test.SearchPanelForAirport"/>
     </classes>
 </test>
 

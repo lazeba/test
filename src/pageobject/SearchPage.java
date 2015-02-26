@@ -2,7 +2,6 @@ package pageobject;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 
 public class SearchPage {
@@ -12,9 +11,8 @@ public class SearchPage {
         this.driver = driver;
     }
 
-    public void clickOnAirport() throws InterruptedException {
-        WebElement airport = driver.findElement(By.id("selectedAirports"));
-        airport.click();
+    public void clickOnAirport()  {
+        driver.findElement(By.id("selectedAirports")).click();
     }
 
     public void clickGermanyCitiesFlightSouth() {
@@ -62,4 +60,7 @@ public class SearchPage {
         driver.findElement(By.id("WAW")).click();
     }
 
+    public void clickSubmitButton() {
+        driver.findElement(By.id("submitLetsGo")).click();
+    }
 }

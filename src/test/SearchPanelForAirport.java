@@ -12,13 +12,11 @@ import pageobject.SearchPage;
 import java.net.MalformedURLException;
 import java.util.concurrent.TimeUnit;
 
-/**
- * Created by Eugene on 2/21/2015.
- */
-public class SearchPanel{
+public class SearchPanelForAirport {
     public String defaultQuestionAirport = "Von welchem Flughafen möchten Sie abfliegen?";
     public String germanyFlightDestination = "Nord Sud Ost West";
     public String airportDestinationCountry = "Deutschland Osterreich Schweiz Sonstige";
+    public String step2Text = "2";
 
     public String defaultTextInAiroportFieldAfterAction = "Alle";
     public String defaultTextInAiroportFieldBeforeAction = "Von wo?";
@@ -29,6 +27,7 @@ public class SearchPanel{
     public String otherFlightCitiesByDefault = "Amsterdam (NL) Brussel (B) Eindhoven (NL) Enschede (NL) Groningen (NL) Luxemburg Luttich (B) Maastricht-Aachen (NL) Strasbourg (F) Warschau (PL)";
 
     public ChromeDriver driver;
+
 
     @BeforeTest
     public void setUp() throws MalformedURLException {
@@ -67,112 +66,122 @@ public class SearchPanel{
 
             SearchPage sp = new SearchPage(driver);
 
-// Airport
-            validateDefaultTextInAirport();
+            checkTextInFieldBeforeActions();
             sp.clickOnAirport();
-            checkAiroportQuestionText();
-            validateAirportDestinationCountry();
+            checkQuestionText();
+            checkDestinationCountries();
             checkboxAllAirportIsActive();
-            defaultTextInAirportField();
+            checkTextInFieldAfterActions();
 
-// germany Airport
-            citiesOnFlifhtTabGermany();
+            citiesOnTabGermany();
             germanyFlightDestination();
             sp.clickGermanyCitiesFlightNorth();
 
-            checkCitiesDestinationInAirportField(germanyDestinationNorth);
+            checkCitiesDestinationInField(germanyDestinationNorth);
             sp.clickGermanyCitiesFlightNorth();
 
             sp.clickGermanyCitiesFlightSouth();
-            checkCitiesDestinationInAirportField(germanyDestinationSouth);
+            checkCitiesDestinationInField(germanyDestinationSouth);
             sp.clickGermanyCitiesFlightSouth();
 
             sp.clickGermanyCitiesFlightEast();
-            checkCitiesDestinationInAirportField(germanyDestinationEast);
+            checkCitiesDestinationInField(germanyDestinationEast);
             sp.clickGermanyCitiesFlightEast();
 
             sp.clickGermanyCitiesFlightWest();
-            checkCitiesDestinationInAirportField(germanyDestinationWest);
+            checkCitiesDestinationInField(germanyDestinationWest);
             sp.clickGermanyCitiesFlightWest();
 
-            checkCitiesOnFlifhtTabAustria();
+            checkCitiesOnTabAustria();
             sp.selectAllAustriaCities();
-            checkCitiesDestinationInAirportField(austriaAllCities);
+            checkCitiesDestinationInField(austriaAllCities);
             sp.selectAllAustriaCities();
 
-            citiesOnFlifhtTabSwitzerland();
+            checkCitiesOnTabSwitzerland();
             sp.selectAllSwitzerlandCities();
-            checkCitiesDestinationInAirportField(switzerlandAllCities);
+            checkCitiesDestinationInField(switzerlandAllCities);
             sp.selectAllSwitzerlandCities();
 
-            citiesOnFlifhtTabOther();
+            checkCitiesOnTabOther();
             sp.selectOtherCities();
-            checkCitiesDestinationInAirportField(allOtherCities);
+            checkCitiesDestinationInField(allOtherCities);
             sp.selectOtherCities();
 
             checkboxAllAirportIsActive();
-            defaultTextInAirportField();
+            checkTextInFieldAfterActions();
+
+            sp.clickSubmitButton();
+
+            checkStep2IsAvailable();
     }
 
-    private void checkCitiesDestinationInAirportField(String citiesDestination) {
+
+
+    public void checkCitiesDestinationInField(String citiesDestination) {
         String citiesDest = driver.findElement(By.id("selectedAirports")).getAttribute("value");
         Assert.assertEquals(citiesDest, citiesDestination);
     }
 
-    private void germanyFlightDestination() {
+    public void germanyFlightDestination() {
        String germanyDestination =  driver.findElement(By.cssSelector(".greyband.row")).getText();
        Assert.assertEquals(germanyDestination.replace("\n", " ").replace("ü", "u").replace("ö", "o"), germanyFlightDestination);
     }
 
-    private void citiesOnFlifhtTabOther() {
+    public void checkCitiesOnTabOther() {
         WebElement other = driver.findElement(By.cssSelector("a[href='#other']"));
         other.click();
         String otherCities = driver.findElement(By.xpath(".//*[@id='other']/div")).getText();;
         Assert.assertEquals(otherCities.replace("\n", " ").replace("ü", "u").replace("ö", "o"), otherFlightCitiesByDefault);
     }
 
-    private void citiesOnFlifhtTabSwitzerland() {
+    public void checkCitiesOnTabSwitzerland() {
         WebElement switzerland = driver.findElement(By.cssSelector("a[href='#switzerland']"));
         switzerland.click();
         String switzerlandCities = driver.findElement(By.xpath(".//*[@id='switzerland']/div")).getText();;
         Assert.assertEquals(switzerlandCities.replace("\n", " "), switzerlandFlightCitiesByDefault);
     }
 
-    private void checkCitiesOnFlifhtTabAustria() {
+    public void checkCitiesOnTabAustria() {
         WebElement austria = driver.findElement(By.cssSelector("a[href='#austria']"));
         austria.click();
         String austriaCities = driver.findElement(By.xpath(".//*[@id='austria']/div")).getText();;
         Assert.assertEquals(austriaCities.replace("\n", " "), austriaFlightCitiesByDefault);
     }
 
-    private void citiesOnFlifhtTabGermany() {
+    public void citiesOnTabGermany() {
         WebElement germany = driver.findElement(By.cssSelector("a[href='#germany']"));
         germany.click();
         String germanyCities = driver.findElement(By.cssSelector(".row.mg-2.mg-lr0")).getText();;
         Assert.assertEquals(germanyCities.replace("\n", " ").replace("ü", "u").replace("ö", "o"), germanyFlightCitiesByDefault);
     }
 
-    public void defaultTextInAirportField() {
+    public void checkTextInFieldAfterActions() {
         String defaultTextInAirportField  = driver.findElement(By.id("selectedAirports")).getAttribute("value");
         Assert.assertEquals(defaultTextInAirportField, defaultTextInAiroportFieldAfterAction);
     }
 
-    private void checkboxAllAirportIsActive() {
+    public void checkboxAllAirportIsActive() {
         Assert.assertTrue(driver.findElement(By.id("allAirports")).isSelected());;
     }
 
-    private void checkAiroportQuestionText() {
+    public void checkQuestionText() {
         String airportText = driver.findElement(By.xpath(".//*[@id='flightDropdown']//span[text()=\"Von welchem Flughafen möchten Sie abfliegen?\"]")).getText();
         Assert.assertEquals(airportText,  defaultQuestionAirport);
     }
 
-    private void validateAirportDestinationCountry() {
+    public void checkDestinationCountries() {
         String airportDestinationCountry = driver.findElement(By.cssSelector("#flightsTab")).getText();;
         Assert.assertEquals(airportDestinationCountry.replace("\n", " ").replace("Ö", "O"), this.airportDestinationCountry);
     }
-    private void validateDefaultTextInAirport() {
+    public void checkTextInFieldBeforeActions() {
         String textInAirport = driver.findElement(By.id("selectedAirports")).getAttribute("value");
         Assert.assertEquals(textInAirport, defaultTextInAiroportFieldBeforeAction);
+    }
+
+    public void checkStep2IsAvailable() {
+        String step2 = driver.findElement(By.cssSelector(".list-circle.step-current")).getText();
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        Assert.assertEquals(step2, step2Text);
     }
 
 }
