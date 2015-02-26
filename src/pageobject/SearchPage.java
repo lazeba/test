@@ -15,19 +15,19 @@ public class SearchPage {
         driver.findElement(By.id("selectedAirports")).click();
     }
 
-    public void clickGermanyCitiesFlightSouth() {
+    public void clickGermanyCitiesSouth() {
         driver.findElement(By.id("FDH,FKB,FMM,MUC,NUE,STR,INN,BSL,LNZ,SXB,ZRH,SZG")).click();
     }
 
-    public void clickGermanyCitiesFlightNorth() {
+    public void clickGermanyCitiesNorth() {
         driver.findElement(By.id("BRE,HAM,HAJ,LBC,RLG,SZW")).click();
     }
 
-    public void clickGermanyCitiesFlightEast() {
+    public void clickGermanyCitiesEast() {
         driver.findElement(By.id("AOC,SXF,TXL,DRS,ERF,LEJ,RLG,SZW")).click();
     }
 
-    public void clickGermanyCitiesFlightWest() {
+    public void clickGermanyCitiesWest() {
         driver.findElement(By.id("DTM,DUS,FRA,HHN,CGN,FMO,NRN,PAD,SCN,ZQW,ENS,LUX,MST")).click();
     }
 

@@ -75,22 +75,22 @@ public class SearchPanelForAirport {
 
             citiesOnTabGermany();
             germanyFlightDestination();
-            sp.clickGermanyCitiesFlightNorth();
+            sp.clickGermanyCitiesNorth();
 
             checkCitiesDestinationInField(germanyDestinationNorth);
-            sp.clickGermanyCitiesFlightNorth();
+            sp.clickGermanyCitiesNorth();
 
-            sp.clickGermanyCitiesFlightSouth();
+            sp.clickGermanyCitiesSouth();
             checkCitiesDestinationInField(germanyDestinationSouth);
-            sp.clickGermanyCitiesFlightSouth();
+            sp.clickGermanyCitiesSouth();
 
-            sp.clickGermanyCitiesFlightEast();
+            sp.clickGermanyCitiesEast();
             checkCitiesDestinationInField(germanyDestinationEast);
-            sp.clickGermanyCitiesFlightEast();
+            sp.clickGermanyCitiesEast();
 
-            sp.clickGermanyCitiesFlightWest();
+            sp.clickGermanyCitiesWest();
             checkCitiesDestinationInField(germanyDestinationWest);
-            sp.clickGermanyCitiesFlightWest();
+            sp.clickGermanyCitiesWest();
 
             checkCitiesOnTabAustria();
             sp.selectAllAustriaCities();
