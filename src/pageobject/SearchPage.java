@@ -2,34 +2,30 @@ package pageobject;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
-
-public class SearchPage {
+public class SearchPage extends Page{
     public WebDriver driver;
 
     public SearchPage(WebDriver driver) {
-        this.driver = driver;
+         super(driver);
     }
 
-    public void clickOnAirport()  {
-        driver.findElement(By.id("selectedAirports")).click();
-    }
+    @FindBy(id = "selectedAirports")
+    public WebElement fieldAirport;
 
-    public void clickGermanyCitiesSouth() {
-        driver.findElement(By.id("FDH,FKB,FMM,MUC,NUE,STR,INN,BSL,LNZ,SXB,ZRH,SZG")).click();
-    }
+    @FindBy(id = "FDH,FKB,FMM,MUC,NUE,STR,INN,BSL,LNZ,SXB,ZRH,SZG")
+    public WebElement citiesGermanySouth;
 
-    public void clickGermanyCitiesNorth() {
-        driver.findElement(By.id("BRE,HAM,HAJ,LBC,RLG,SZW")).click();
-    }
+    @FindBy(id = "BRE,HAM,HAJ,LBC,RLG,SZW")
+    public WebElement germanyCitiesNorth;
 
-    public void clickGermanyCitiesEast() {
-        driver.findElement(By.id("AOC,SXF,TXL,DRS,ERF,LEJ,RLG,SZW")).click();
-    }
+    @FindBy(id = "AOC,SXF,TXL,DRS,ERF,LEJ,RLG,SZW")
+    public WebElement citiesGermanyEast;
 
-    public void clickGermanyCitiesWest() {
-        driver.findElement(By.id("DTM,DUS,FRA,HHN,CGN,FMO,NRN,PAD,SCN,ZQW,ENS,LUX,MST")).click();
-    }
+    @FindBy(id = "DTM,DUS,FRA,HHN,CGN,FMO,NRN,PAD,SCN,ZQW,ENS,LUX,MST")
+    public WebElement citiesGermanyWest;
 
     public void selectAllAustriaCities() {
         driver.findElement(By.id("GRZ")).click();
@@ -60,7 +56,9 @@ public class SearchPage {
         driver.findElement(By.id("WAW")).click();
     }
 
-    public void clickSubmitButton() {
-        driver.findElement(By.id("submitLetsGo")).click();
-    }
+    @FindBy(id = "submitLetsGo")
+    public WebElement buttonLetsGo;
+
+    @FindBy(id = "selectedAirports")
+    public WebElement selectedAirports;
 }

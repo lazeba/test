@@ -1,0 +1,19 @@
+<component name="libraryTable">
+  <library name="testng-6.8">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/libs/testng-6.8.6beta" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="file://$PROJECT_DIR$/libs/testng-6.8.6beta/javadocs" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/libs/testng-6.8.6beta/examples/src" />
+      <root url="file://$PROJECT_DIR$/libs/testng-6.8.6beta/spring/src/common" />
+      <root url="file://$PROJECT_DIR$/libs/testng-6.8.6beta/spring/src/jdk14" />
+      <root url="file://$PROJECT_DIR$/libs/testng-6.8.6beta/spring/src/jdk15" />
+      <root url="file://$PROJECT_DIR$/libs/testng-6.8.6beta/src/main/java" />
+      <root url="file://$PROJECT_DIR$/libs/testng-6.8.6beta/src/test/java" />
+    </SOURCES>
+    <jarDirectory url="file://$PROJECT_DIR$/libs/testng-6.8.6beta" recursive="false" />
+  </library>
+</component>
