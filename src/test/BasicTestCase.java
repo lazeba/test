@@ -8,8 +8,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
-import utils.EnvironmentConfiguration;
-
+import utils.*;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -19,16 +18,20 @@ public class BasicTestCase {
 
     protected WebDriver driver;
 
-    public String userAgent;
-    public String environment;
-
-    public WebDriver getWebDriver(String userAgent) {
+    public WebDriver getWebDriver() {
+        String userAgent = Configurator.userAgent;
 
         switch (userAgent.toLowerCase()) {
             case "firefox":
 
-                driver = new FirefoxDriver();
-                driver.navigate().to(String.valueOf(EnvironmentConfiguration.Environments.Staging));
+                DesiredCapabilities cap1 = new DesiredCapabilities();
+                cap1.setCapability(CapabilityType.BROWSER_NAME, "Firefox");
+                cap1.setCapability(CapabilityType.PLATFORM, "WINDOWS");
+
+                driver = new FirefoxDriver(cap1);
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                driver.manage().window().maximize();
+                driver.navigate().to(Configurator.config.WebUrl);
 
                 break;
 
@@ -43,20 +46,22 @@ public class BasicTestCase {
                 driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                 driver.manage().window().maximize();
 
-                driver.navigate().to("http://www.thomascook.de");
+                driver.navigate().to(Configurator.config.WebUrl);
 
-//            default:
-//                driver = new ChromeDriver();
             break;
         }
         return driver;
     }
 
     @BeforeClass
-    @Parameters({"userAgent"})
-    public void initializeAgent(String userAgent) {
-        this.userAgent = userAgent;
-        driver = getWebDriver(userAgent);
+    @Parameters({"userAgent", "environment"})
+    public void initializeUserAgentAndEnvironment(String userAgent, String environment) {
+        Configurator.userAgent = userAgent;
+        Configurator.environment = environment;
+        Configurator.config = new EnvironmentConfiguration(environment);
+        driver = getWebDriver();
+
+
     }
 
     @AfterClass(alwaysRun = true)

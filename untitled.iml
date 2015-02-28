@@ -8,5 +8,8 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="libs" level="project" />
+    <orderEntry type="library" name="selenium-2.45" level="project" />
+    <orderEntry type="library" name="testng-6.8" level="project" />
+    <orderEntry type="library" name="selenium-server-standalone-2.45.0" level="project" />
   </component>
 </module>
