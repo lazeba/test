@@ -5,13 +5,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.*;
-import pageobject.BasicTestCase;
 import pageobject.SearchPage;
 
 import java.util.concurrent.TimeUnit;
 
 public class SearchPanelAirport extends BasicTestCase {
-    public SearchPage sp;
+  //  public SearchPage sp;
     public String defaultQuestionAirport = "Von welchem Flughafen möchten Sie abfliegen?";
     public String germanyFlightDestination = "Nord Sud Ost West";
     public String airportDestinationCountry = "Deutschland Osterreich Schweiz Sonstige";
@@ -25,10 +24,10 @@ public class SearchPanelAirport extends BasicTestCase {
     public String switzerlandFlightCitiesByDefault = "Basel-Mulhouse (CH) Genf (CH) Zürich (CH)";
     public String otherFlightCitiesByDefault = "Amsterdam (NL) Brussel (B) Eindhoven (NL) Enschede (NL) Groningen (NL) Luxemburg Luttich (B) Maastricht-Aachen (NL) Strasbourg (F) Warschau (PL)";
 
-    @BeforeClass
-    public void initializeSearchPage() {
-        SearchPage sp = PageFactory.initElements(driver, SearchPage.class);
-           }
+//    @BeforeClass
+//    public void initializeSearchPage() {
+//        SearchPage sp = PageFactory.initElements(driver, SearchPage.class);
+//           }
 
     @DataProvider
     public Object[][] citiesInAirportField() {
@@ -43,10 +42,11 @@ public class SearchPanelAirport extends BasicTestCase {
     public void testSearch(String germanyDestinationNorth, String germanyDestinationSouth, String germanyDestinationEast, String germanyDestinationWest,
                            String austriaAllCities, String switzerlandAllCities, String allOtherCities) throws Exception {
 
-        driver.navigate().to("http://www.thomascook.de");
+    //    SearchPage sp = new SearchPage(driver);
 
+            SearchPage sp = new SearchPage(driver);
 
-        checkTextInFieldBeforeActions();
+            checkTextInFieldBeforeActions();
             sp.fieldAirport.click();
             checkQuestionText();
             checkDestinationCountries();
@@ -84,8 +84,8 @@ public class SearchPanelAirport extends BasicTestCase {
 
             checkCitiesOnTabOther();
             sp.selectOtherCities();
-
-            checkCityDestinationInFieldAirport(switzerlandAllCities, sp.citiesGermanyEast.getAttribute("value"));
+        String r = sp.citiesGermanyEast.getAttribute("value");
+       Assert.assertEquals(switzerlandAllCities, r);
 
 
         checkCitiesDestinationInField(allOtherCities);

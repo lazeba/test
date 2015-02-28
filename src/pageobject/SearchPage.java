@@ -59,6 +59,6 @@ public class SearchPage extends Page{
     @FindBy(id = "submitLetsGo")
     public WebElement buttonLetsGo;
 
-    @FindBy(id = "selectedAirports")
-    public WebElement selectedAirports;
+//    @FindBy(id = "selectedAirports")
+//    public WebElement selectedAirports;
 }

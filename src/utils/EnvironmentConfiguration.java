@@ -5,7 +5,7 @@ package utils;
 /**
  * Created by Eugene on 2/26/2015.
  */
-public class EnvironmentConfiguration {
+public final class EnvironmentConfiguration {
     public String Name;
     public String WebUrl;
     public String ApiUrl;
