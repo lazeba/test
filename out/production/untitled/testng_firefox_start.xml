@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="Search panel Suite" verbose="2" time-out="10000">
+<suite name="Search panel Suite" verbose="2" time-out="40000">
 
     <parameter name="userAgent" value="firefox"/>
+    <parameter name="environment" value="Staging"/>
 
     <test name="Search panel Airport ">
 

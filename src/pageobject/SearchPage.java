@@ -1,6 +1,5 @@
 package pageobject;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -15,11 +14,41 @@ public class SearchPage extends Page{
     @FindBy(id = "selectedAirports")
     public WebElement fieldAirport;
 
+    @FindBy(css = "#flightsTab")
+    public WebElement destinationCountries;
+
+    @FindBy(xpath = ".//*[@id='flightDropdown']//span[text()=\"Von welchem Flughafen möchten Sie abfliegen?\"]")
+    public WebElement questionText;
+
+    @FindBy(id = "allAirports")
+    public WebElement allAirportIsActive;
+
+    @FindBy(css = "a[href='#germany']")
+    public WebElement citiesOnTabGermany;
+
+    @FindBy(css = ".row.mg-2.mg-lr0")
+    public WebElement namesAllGermanyCities;
+
+    @FindBy(css = ".greyband.row")
+    public WebElement germanyFlightDestination;
+
+    @FindBy(css = "a[href='#austria']")
+    public WebElement citiesOnTabAustria;
+
+    @FindBy(xpath = ".//*[@id='austria']/div")
+    public WebElement namesAllAustriaCities;
+
+    @FindBy(css = "a[href='#other']")
+    public WebElement сitiesOnTabOther;
+
+    @FindBy(xpath = ".//*[@id='other']/div")
+    public WebElement namesAllOtherCities;
+
     @FindBy(id = "FDH,FKB,FMM,MUC,NUE,STR,INN,BSL,LNZ,SXB,ZRH,SZG")
     public WebElement citiesGermanySouth;
 
     @FindBy(id = "BRE,HAM,HAJ,LBC,RLG,SZW")
-    public WebElement germanyCitiesNorth;
+    public WebElement citiesGermanyNorth;
 
     @FindBy(id = "AOC,SXF,TXL,DRS,ERF,LEJ,RLG,SZW")
     public WebElement citiesGermanyEast;
@@ -27,37 +56,99 @@ public class SearchPage extends Page{
     @FindBy(id = "DTM,DUS,FRA,HHN,CGN,FMO,NRN,PAD,SCN,ZQW,ENS,LUX,MST")
     public WebElement citiesGermanyWest;
 
-    public void selectAllAustriaCities() {
-        driver.findElement(By.id("GRZ")).click();
-        driver.findElement(By.id("INN")).click();
-        driver.findElement(By.id("KLU")).click();
-        driver.findElement(By.id("LNZ")).click();
-        driver.findElement(By.id("SZG")).click();
-        driver.findElement(By.id("VIE")).click();
-    }
+    @FindBy(id = "GRZ")
+    public WebElement cityGrazAustria;
 
-    public void selectAllSwitzerlandCities() {
-        driver.findElement(By.id("BSL")).click();
-        driver.findElement(By.id("GVA")).click();
-        driver.findElement(By.id("ZRH")).click();
+    @FindBy(id = "INN")
+    public WebElement cityInnsbruckAustria;
 
-    }
+    @FindBy(id = "KLU")
+    public WebElement cityKlagenfurtAustria;
 
-    public void selectOtherCities() {
-        driver.findElement(By.id("AMS")).click();
-        driver.findElement(By.id("BRU")).click();
-        driver.findElement(By.id("EIN")).click();
-        driver.findElement(By.id("ENS")).click();
-        driver.findElement(By.id("GRQ")).click();
-        driver.findElement(By.id("LUX")).click();
-        driver.findElement(By.id("LGG")).click();
-        driver.findElement(By.id("MST")).click();
-        driver.findElement(By.id("SXB")).click();
-        driver.findElement(By.id("WAW")).click();
-    }
+    @FindBy(id = "LNZ")
+    public WebElement cityLinzAustria;
+
+    @FindBy(id = "SZG")
+    public WebElement citySalzburgAustria;
+
+    @FindBy(id = "VIE")
+    public WebElement cityWienAustria;
+
+    @FindBy(css = "a[href='#switzerland']")
+    public WebElement citiesOnTabSwitzerland;
+
+    @FindBy(xpath = ".//*[@id='switzerland']/div")
+    public WebElement namesAllSwitzerlandCities;
+
+    @FindBy(id = "BSL")
+    public WebElement cityBaselMulhouseSwitzerland;
+
+    @FindBy(id = "GVA")
+    public WebElement cityGenfSwitzerland;
+
+    @FindBy(id = "ZRH")
+    public WebElement cityZurichSwitzerland;
+
+    @FindBy(id = "WAW")
+    public WebElement cityWarschauOther;
+
+    @FindBy(id = "SXB")
+    public WebElement cityStrasbourgOther;
+
+    @FindBy(id = "MST")
+    public WebElement cityMaastrichtAachenOther;
+
+    @FindBy(id = "LGG")
+    public WebElement cityLuttichOther;
+
+    @FindBy(id = "LUX")
+    public WebElement cityLuxemburgOther;
+
+    @FindBy(id = "GRQ")
+    public WebElement cityGroningenOther;
+
+    @FindBy(id = "ENS")
+    public WebElement cityEnschedeOther;
+
+    @FindBy(id = "EIN")
+    public WebElement cityEindhovenOther;
+
+    @FindBy(id = "AMS")
+    public WebElement cityAmsterdamOther;
+
+    @FindBy(id = "BRU")
+    public WebElement cityBrussselOther;
 
     @FindBy(id = "submitLetsGo")
     public WebElement buttonLetsGo;
+
+    public void selectAllSwitzerlandCities(){
+        cityBaselMulhouseSwitzerland.click();
+        cityGenfSwitzerland.click();
+        cityZurichSwitzerland.click();
+    }
+
+    public void selectOtherCities() {
+        cityAmsterdamOther.click();
+        cityBrussselOther.click();
+        cityEindhovenOther.click();
+        cityEnschedeOther.click();
+        cityGroningenOther.click();
+        cityLuxemburgOther.click();
+        cityLuttichOther.click();
+        cityMaastrichtAachenOther.click();
+        cityStrasbourgOther.click();
+        cityWarschauOther.click();
+    }
+
+    public void selectAllAustriaCities() {
+        cityGrazAustria.click();
+        cityInnsbruckAustria.click();
+        cityKlagenfurtAustria.click();
+        cityLinzAustria.click();
+        citySalzburgAustria.click();
+        cityWienAustria.click();
+    }
 
 //    @FindBy(id = "selectedAirports")
 //    public WebElement selectedAirports;
